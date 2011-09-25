@@ -1,7 +1,7 @@
 /* 
  * OpenDingux Radio Utility
  *
- * Copyright (c) 2011
+ * Copyright (c) 2011 Jérôme VERES
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,7 +133,7 @@ int RadioShowHelp(void)
   printf("radio --seekdown    : seek down\n");
   printf("radio --status      : show FM chip status\n");
   printf("radio --register    : show registers of FM chip\n");
-  printf("radio --allregister : show all registers of FM chip\n");
+  printf("radio --registerall : show all registers of FM chip\n");
   printf("radio --help        : show this help\n");
   return 0;
 }
@@ -146,7 +146,7 @@ int RadioStart(void)
     0b11000000, 0b00000001,	//0x02
     0b00000000, 0b00000000,     //0x03
     0b00000000, 0b00000000,     //0x04
-    0b00000100, 0b11111111,     //0x05
+    0b00000100, 0b01110111,     //0x05
   };
   i2c_open();
   i2c_write(buffer, 8);
@@ -182,7 +182,7 @@ int RadioSeekDown(void)
 {
   static unsigned char buffer[]=
   {
-    0b11000011, 0b00000001	//0x02
+    0b11000001, 0b00000001	//0x02
   };
   i2c_open();
   i2c_write(buffer, 2);
